@@ -3182,6 +3182,90 @@ a.footer__link:hover {
   .sambut__btn {
     animation: none;
   }
+
+  /*=============== RESPONSIF: HP, TABLET, KOMPUTER ===============*/
+img,
+svg {
+  max-width: 100%;
+}
+
+/* Kolom grid boleh menyempit mengikuti layar */
+.grid > *,
+.testimonial__container > * {
+  min-width: 0;
+}
+
+/* Capaian: tabel dan grafik bisa digeser ke samping, bukan melebarkan halaman */
+.cap__data,
+.cap-grafik {
+  overflow-x: auto;
+}
+.gk {
+  min-width: 27rem;
+}
+
+/* Tablet dan HP */
+@media (max-width: 767px) {
+  .section__title {
+    font-size: 1.35rem;
+  }
+  .cap__data {
+    padding: 1.2rem 1rem;
+  }
+  .stat {
+    padding: 0.8rem;
+  }
+  .stat b {
+    font-size: 1.4rem;
+  }
+  .cap-grafik {
+    padding: 0.8rem;
+  }
+  .cap-grafik-head select {
+    min-width: 0;
+    width: 100%;
+  }
+  .gk-lab {
+    font-size: 0.72rem;
+  }
+  .gk-lab small {
+    font-size: 0.62rem;
+  }
+  table {
+    font-size: 0.78rem;
+  }
+  th,
+  td {
+    padding: 0.5rem 0.45rem;
+  }
+  .tbox {
+    padding: 0.8rem;
+  }
+  .res {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    padding: 0.6rem 0.8rem;
+  }
+  .res b {
+    font-size: 1.05rem;
+  }
+  .home__title {
+    font-size: 2.1rem;
+  }
+}
+
+/* HP kecil */
+@media (max-width: 480px) {
+  .container {
+    width: calc(100% - 1.2rem);
+  }
+  .stats {
+    gap: 0.6rem;
+  }
+  .unduh-act .button {
+    width: 100%;
+    justify-content: center;
+  }
+}
   .sambut__centang {
     animation: none;
     stroke-dashoffset: 0;
