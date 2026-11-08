@@ -3182,8 +3182,13 @@ a.footer__link:hover {
   .sambut__btn {
     animation: none;
   }
+  .sambut__centang {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
 
-  /*=============== RESPONSIF: HP, TABLET, KOMPUTER ===============*/
+/*=============== RESPONSIF: HP, TABLET, KOMPUTER ===============*/
 img,
 svg {
   max-width: 100%;
@@ -3264,10 +3269,5 @@ svg {
   .unduh-act .button {
     width: 100%;
     justify-content: center;
-  }
-}
-  .sambut__centang {
-    animation: none;
-    stroke-dashoffset: 0;
   }
 }
