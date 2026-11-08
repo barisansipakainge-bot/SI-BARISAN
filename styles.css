@@ -3271,3 +3271,14 @@ svg {
     justify-content: center;
   }
 }
+
+/* Font Lontara dipasang sendiri agar posisi tanda vokal sama di semua perangkat */
+@font-face {
+  font-family: "Lontara SIB";
+  src: url("NotoSansBuginese-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+.pemisah .lontara {
+  font-family: "Lontara SIB", "Noto Sans Buginese", serif;
+}
