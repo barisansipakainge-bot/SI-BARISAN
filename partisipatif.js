@@ -137,6 +137,16 @@
     return !!S.user && (S.user.role == "kanwil" || S.user.role == "kab");
   }
 
+   // Yang boleh menyimpan: Kanwil, Kankemenag, dan akun Partisipatif
+  function bolehSimpan() {
+    return (
+      !!S.user &&                          // sudah login
+      (S.user.role == "kanwil" ||          // Kanwil boleh
+        S.user.role == "kab" ||            // Kankemenag boleh
+        S.user.role == "partisipatif")     // akun partisipatif boleh
+    );
+  }
+
   // Kanwil dan Kankemenag dapat memverifikasi semua lembaga partisipatif
   function bolehVerPart(x) {
     if (!S.user) return false;
@@ -680,9 +690,9 @@
 
     if (kirimSedang) return;
 
-    if (!boleh()) {
+    if (!bolehSimpan()) {                  // pakai fungsi izin yang baru
       return pesan(
-        "Hanya akun Kanwil dan Kankemenag yang dapat menyimpan data lembaga partisipatif.",
+        "Akun ini tidak diizinkan menyimpan data lembaga partisipatif.",
         0,
       );
     }
@@ -794,6 +804,7 @@
           kode.length + " kegiatan, " + files.length + " berkas bukti",
         );
         muat();
+        document.dispatchEvent(new Event("sib:part-tersimpan"));   // BARIS BARU: beri tahu main.js
       })
       .catch(function (e) {
         retryId = id;
