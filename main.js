@@ -1274,6 +1274,11 @@
     return !!U && (U.role == "kanwil" || U.role == "kab");
   }
 
+   // Akun lembaga Partisipatif
+  function akunPart() {
+    return !!U && U.role == "partisipatif";   // benar kalau yang login role partisipatif
+  }
+
   // Semua penilaian (tanpa saringan akun) ditambah data Lembaga Partisipatif
   function semuaMon() {
     return load()
@@ -1556,7 +1561,7 @@
 
   function render() {
     var nav = adaNav(),
-      d = nav ? tampilMon() : rows();
+       d = nav ? tampilMon() : akunPart() ? urutMon(partData.slice()) : rows();
 
     $("#tb").innerHTML = d
       .map(function (x) {
@@ -2067,7 +2072,7 @@
 
   // Memuat data Lembaga Partisipatif untuk akun Kanwil dan Kankemenag
   function syncPart() {
-    if (!DRIVE_URL || !adaNav()) return;
+    if (!DRIVE_URL || !(adaNav() || akunPart())) return;   // Kanwil, Kankemenag, atau akun partisipatif
 
     drivePost({ action: "part_list", pengguna: U.u, role: U.role })
       .then(function (r) {
@@ -2102,6 +2107,9 @@
       });
   }
 
+  // Setelah lembaga disimpan (sinyal dari partisipatif.js), muat ulang agar langsung tampil di Monitoring
+  document.addEventListener("sib:part-tersimpan", syncPart);
+   
   function fileToBase64(file) {
     return new Promise(function (done, fail) {
       var r = new FileReader();
